@@ -14,16 +14,24 @@
  * limitations under the License.
  */
 
-package com.example;
+package com.pokemon;
 
+import com.pokemon.entity.GlobalCard;
+import com.pokemon.repo.GlobalCardRepository;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import me.sargunvohra.lib.pokekotlin.client.PokeApi;
+import me.sargunvohra.lib.pokekotlin.client.PokeApiClient;
+import me.sargunvohra.lib.pokekotlin.model.Pokemon;
+import me.sargunvohra.lib.pokekotlin.model.PokemonSpecies;
+import me.sargunvohra.lib.pokekotlin.model.PokemonStat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
@@ -32,6 +40,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -44,9 +53,26 @@ public class Main {
   @Autowired
   private DataSource dataSource;
 
+  @Autowired
+  private GlobalCardRepository globalCardRepository;
+
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
   }
+
+  @PostMapping("/add")
+  public void addToDB() {
+    PokeApi pokeApi = new PokeApiClient();
+    //for(int i=1; i<=251; i++) {
+      Pokemon pokemon=pokeApi.getPokemon(1);
+      List<PokemonStat> temp=pokemon.getStats();
+      for (int i=0; i<pokemon.getStats().size(); i++) {
+        System.out.println(temp.get(i));
+      }
+   // }
+  }
+
+
 
   @RequestMapping("/")
   String index() {
