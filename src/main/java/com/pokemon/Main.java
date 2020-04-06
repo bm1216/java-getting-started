@@ -16,42 +16,35 @@
 
 package com.pokemon;
 
-import com.pokemon.entity.GlobalCard;
 import com.pokemon.repo.GlobalCardRepository;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import me.sargunvohra.lib.pokekotlin.client.PokeApi;
 import me.sargunvohra.lib.pokekotlin.client.PokeApiClient;
 import me.sargunvohra.lib.pokekotlin.model.Pokemon;
-import me.sargunvohra.lib.pokekotlin.model.PokemonSpecies;
 import me.sargunvohra.lib.pokekotlin.model.PokemonStat;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
+@EntityScan("com.pokemon.entity")
 @SpringBootApplication
 public class Main {
 
-  @Value("${spring.datasource.url}")
-  private String dbUrl;
+  /*@Value("${spring.datasource.url}")
+  private String dbUrl;*/
 
-  @Autowired
-  private DataSource dataSource;
+/*  @Autowired
+  private DataSource dataSource;*/
 
   @Autowired
   private GlobalCardRepository globalCardRepository;
@@ -60,7 +53,7 @@ public class Main {
     SpringApplication.run(Main.class, args);
   }
 
-  @PostMapping("/add")
+  @GetMapping("/add")
   public void addToDB() {
     PokeApi pokeApi = new PokeApiClient();
     //for(int i=1; i<=251; i++) {
@@ -72,14 +65,12 @@ public class Main {
    // }
   }
 
-
-
   @RequestMapping("/")
   String index() {
     return "index";
   }
 
-  @RequestMapping("/db")
+  /*@RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = dataSource.getConnection()) {
       Statement stmt = connection.createStatement();
@@ -98,17 +89,15 @@ public class Main {
       model.put("message", e.getMessage());
       return "error";
     }
-  }
-
-  @Bean
-  public DataSource dataSource() throws SQLException {
-    if (dbUrl == null || dbUrl.isEmpty()) {
-      return new HikariDataSource();
-    } else {
-      HikariConfig config = new HikariConfig();
-      config.setJdbcUrl(dbUrl);
-      return new HikariDataSource(config);
-    }
-  }
-
+  }*/
+  /*@Bean
+  public DataSource datasource() {
+    return DataSourceBuilder.create()
+            .driverClassName("org.postgresql.Driver")
+            .url("jdbc:jdbc:postgresql://ec2-34-195-169-25.compute-1.amazonaws.com/dd4evmm97k7vti")
+            .username("ytjtwsowsfviuf")
+            .password("9b1f76534482bfb8f68f4520a3ab0829dec7fb29a19d11085b816e58855b3ddf")
+            .build();
+  }*/
 }
+

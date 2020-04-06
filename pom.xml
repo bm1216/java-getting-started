@@ -15,6 +15,14 @@
   </parent>
   <name>java-getting-started</name>
 
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>bintray</name>
+      <url>https://jcenter.bintray.com</url>
+    </repository>
+  </repositories>
+
   <properties>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,7 +41,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-    <dependency>
+   <!-- <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
       <exclusions>
@@ -42,11 +50,16 @@
       		<artifactId>thymeleaf-layout-dialect</artifactId>
       	</exclusion>
       </exclusions>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -92,15 +105,6 @@
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
   </dependencies>
-
-    <repositories>
-      <repository>
-        <id>central</id>
-        <name>bintray</name>
-        <url>https://jcenter.bintray.com</url>
-      </repository>
-    </repositories>
-
 
   <build>
     <plugins>
