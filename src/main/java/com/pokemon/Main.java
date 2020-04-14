@@ -31,11 +31,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
 import java.util.List;
 
-@Controller
+@RestController
 @EntityScan("com.pokemon.entity")
 @SpringBootApplication
 public class Main {
@@ -55,15 +56,16 @@ public class Main {
 
   @GetMapping("/add")
   public void addToDB() {
-    PokeApi pokeApi = new PokeApiClient();
+    /*PokeApi pokeApi = new PokeApiClient();
     //for(int i=1; i<=251; i++) {
       Pokemon pokemon=pokeApi.getPokemon(1);
       List<PokemonStat> temp=pokemon.getStats();
-      for (int i=0; i<pokemon.getStats().size(); i++) {
-        System.out.println(temp.get(i));
+      //for (int i=0; i<pokemon.getStats().size(); i++) {
+        System.out.println(temp.get(0));*/
+    System.out.println("You are connected to DB bruh");
       }
    // }
-  }
+ // }
 
   @RequestMapping("/")
   String index() {

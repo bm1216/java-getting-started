@@ -16,16 +16,16 @@ public class GlobalCard {
     private String type;
 
     @Column(name="hp")
-    private int hp;
+    private String hp;
 
     @Column(name="attack")
-    private int attack;
+    private String attack;
 
-    @Column(name="defence")
-    private int defence;
+    @Column(name="defense")
+    private String defense;
 
     @Column(name="speed")
-    private int speed;
+    private String speed;
 
     @Column(name="price")
     private String price;
@@ -46,35 +46,35 @@ public class GlobalCard {
         this.type = type;
     }
 
-    public int getHp() {
+    public String getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(String hp) {
         this.hp = hp;
     }
 
-    public int getAttack() {
+    public String getAttack() {
         return attack;
     }
 
-    public void setAttack(int attack) {
+    public void setAttack(String attack) {
         this.attack = attack;
     }
 
-    public int getDefence() {
-        return defence;
+    public String getDefense() {
+        return defense;
     }
 
-    public void setDefence(int defence) {
-        this.defence = defence;
+    public void setDefense(String defense) {
+        this.defense = defense;
     }
 
-    public int getSpeed() {
+    public String getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(String speed) {
         this.speed = speed;
     }
 
